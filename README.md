@@ -1,2 +1,5 @@
 # advent-of-code
-solutions for Advent of Code
+Solutions for Advent of Code
+
+##Solutions 
+* Day 01: Not Quite Lisp - 138, 1771
