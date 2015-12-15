@@ -6,3 +6,4 @@ Solutions for Advent of Code
 * Day 02: I Was Told There Would Be No Math - 1586300, 3737498
 * Day 03: Perfectly Spherical Houses in a Vacuum - 2565, 2639
 * Day 04: The Ideal Stocking Stuffer - 254575, 1038736
+* Day 05: Doesn't He Have Intern-Elves For This? - 255, 55
