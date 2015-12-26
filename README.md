@@ -1,6 +1,9 @@
 # advent-of-code
 Solutions for Advent of Code
 
+#### Notice
+Christmas is over. I didn't manage to solve all assignments on time, :cry: and it would be cheating to continue now, so, let's leave it like this until the next season. ~ Jan, 25.12.2015.
+
 ##Solutions 
 * Day 01: Not Quite Lisp - 138, 1771
 * Day 02: I Was Told There Would Be No Math - 1586300, 3737498
