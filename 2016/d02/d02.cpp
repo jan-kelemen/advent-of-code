@@ -7,17 +7,34 @@
 #include "Direction.h"
 
 using instruction_t = std::vector<Direction>;
+using keypad_t = std::vector<std::vector<char>>;
 
 std::vector<instruction_t> read_instructions(char const* filename);
 
-std::vector<int> process_instructions(std::vector<instruction_t> const& commands);
+std::vector<char> process_keypad_instructions(std::vector<instruction_t> const& commands, size_t vertical, size_t horizontal, keypad_t const& keypad);
 
 int main() {
     auto constexpr input_filename = "input.txt";
     auto commands = read_instructions(input_filename);
-    auto result = process_instructions(commands);
+    auto part1_result = process_keypad_instructions(commands, 1, 1, {
+        {'1', '2', '3'},
+        {'4', '5', '6'},
+        {'7', '8', '9'}
+    });
 
-    for (auto digit : result) {
+    auto part2_result = process_keypad_instructions(commands, 2, 0, {
+        {0, 0, '1', 0, 0},
+        {0, '2', '3', '4', 0},
+        {'5', '6', '7', '8', '9'},
+        {0, 'A', 'B', 'C', 0},
+        {0, 0, 'D', 0, 0}
+    });
+
+    for (auto digit : part1_result) {
+        std::cout << digit;
+    }
+    std::cout << ", ";
+    for (auto digit : part2_result) {
         std::cout << digit;
     }
     std::cout << '\n';
@@ -43,27 +60,29 @@ std::vector<instruction_t> read_instructions(char const* filename) {
     return rv;
 }
 
-std::vector<int> process_instructions(std::vector<instruction_t> const& commands) {
-    auto rv = std::vector<int>();
+std::vector<char> process_keypad_instructions(std::vector<instruction_t> const& commands, size_t vertical, size_t horizontal, keypad_t const& keypad) {
+    auto rv = std::vector<char>();
 
     for (auto const& command : commands) {
-        auto number = 5;
+        auto ver = vertical;
+        auto hor = horizontal;
+
         for (auto& direction : command) {
             switch (direction) {
                 case Direction::Up:
-                    if (number - 3 > 0) { number -= 3; } break;
+                    if (ver != 0 && keypad[ver - 1][hor] != 0) { --ver; } break;
                 case Direction::Down:
-                    if (number + 3 < 10) { number += 3; } break;
+                    if (ver + 1 != keypad.size() && keypad[ver + 1][hor] != 0) { ++ver; } break;
                 case Direction::Left:
-                    if (number % 3 != 1) { --number; } break;
+                    if (hor != 0 && keypad[ver][hor - 1] != 0) { --hor; } break;
                 case Direction::Right:
-                    if (number % 3 != 0) { ++number; } break;
+                    if (hor + 1 != keypad[ver].size() && keypad[ver][hor + 1] != 0) { ++hor; } break;
                 default:
                     break;
             }
         }
-        rv.push_back(number);
+        rv.push_back(keypad[ver][hor]);
     }
-    
+
     return rv;
 }
