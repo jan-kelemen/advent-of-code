@@ -10,13 +10,13 @@ std::vector<std::string> read_rooms(char const* filename);
 
 bool check_room_validity(std::string const& room_name);
 
-int sum_sector_ids(std::vector<std::string> const& rooms);
+int print_decoded_and_sum_sectors(std::vector<std::string> const& rooms);
 
 int main() {
     auto constexpr input_filename = "input.txt";
     auto rooms = read_rooms(input_filename);
 
-    std::cout << sum_sector_ids(rooms) << '\n';
+    std::cout << print_decoded_and_sum_sectors(rooms) << '\n';
 
     system("pause");
 }
@@ -54,15 +54,26 @@ bool check_room_validity(std::string const& room_name) {
     return rv;
 }
 
-int sum_sector_ids(std::vector<std::string> const& rooms) {
+void rotate_and_print(std::string const& s, int d) {
+    for (auto c : s) {
+        std::cout << char('a' + ((int(c - 'a') + d) % 26)); 
+    }
+    std::cout << '\n';
+}
+
+int print_decoded_and_sum_sectors(std::vector<std::string> const& rooms) {
     auto rv = 0;
     for (auto const& room : rooms) {
         if (!check_room_validity(room)) { continue; }
 
         auto first = room.find_first_of("0123456789");
         auto second = room.find_first_of("[");
-        auto sector = room.substr(first, second - first);
-        rv += std::stoi(sector);
+        auto sector = std::stoi(room.substr(first, second - first));
+
+        rotate_and_print(room, sector);
+
+        rv += sector;
     }
     return rv;
 }
+
