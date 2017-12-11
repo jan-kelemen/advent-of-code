@@ -5,4 +5,6 @@
 * Day 04: High-Entropy Passphrases - 455, 186
 * Day 05: A Maze of Twisty Trampolines, All Alike - 359348, 27688760
 * Day 06: Memory Reallocation - 12841, 8038
+* Day 07: Recursive Circus - mkxke, 268
+
 
