@@ -7,3 +7,4 @@
 * Day 06: Memory Reallocation - 12841, 8038
 * Day 07: Recursive Circus - mkxke, 268
 * Day 08: I Heard You Like Registers - 6828, 7234
+* Day 09: Stream Processing - 14421, 6817
