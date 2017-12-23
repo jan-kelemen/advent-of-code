@@ -8,3 +8,4 @@
 * Day 07: Recursive Circus - mkxke, 268
 * Day 08: I Heard You Like Registers - 6828, 7234
 * Day 09: Stream Processing - 14421, 6817
+* Day 10: Knot Hash - 52070, 7f94112db4e32e19cf6502073c66f9bb
