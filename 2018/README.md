@@ -1,5 +1,5 @@
 ## Solutions 
-* Day 01: N - F, S
+* Day 01: Chronal Calibration - 474, 137041
 * Day 02: N - F, S
 * Day 03: N - F, S
 * Day 04: N - F, S
