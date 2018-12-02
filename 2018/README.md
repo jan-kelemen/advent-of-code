@@ -1,6 +1,6 @@
 ## Solutions 
 * Day 01: Chronal Calibration - 474, 137041
-* Day 02: N - F, S
+* Day 02: Inventory Management System - 9139, uqcidadzwtnhsljvxyobmkfyr
 * Day 03: N - F, S
 * Day 04: N - F, S
 * Day 05: N - F, S
