@@ -1,7 +1,7 @@
 ## Solutions 
 * Day 01: Chronal Calibration - 474, 137041
 * Day 02: Inventory Management System - 9139, uqcidadzwtnhsljvxyobmkfyr
-* Day 03: N - F, S
+* Day 03: No Matter How You Slice It - 116920, 382
 * Day 04: N - F, S
 * Day 05: N - F, S
 * Day 06: N - F, S
