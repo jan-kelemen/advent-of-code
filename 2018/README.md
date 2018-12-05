@@ -3,7 +3,7 @@
 * Day 02: Inventory Management System - 9139, uqcidadzwtnhsljvxyobmkfyr
 * Day 03: No Matter How You Slice It - 116920, 382
 * Day 04: Repose Record - 71748, 106850
-* Day 05: N - F, S
+* Day 05: Alchemical Reduction - 10978, 4840
 * Day 06: N - F, S
 * Day 07: N - F, S
 * Day 08: N - F, S
