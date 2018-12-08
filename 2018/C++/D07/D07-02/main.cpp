@@ -116,7 +116,5 @@ template<typename InputIt>
 
 int main()
 {
-    using namespace std::string_literals;
-    int const seconds = run_dependent_tree(std::istream_iterator<dependency>{std::cin}, {});
-    std::cout << seconds << '\n';
+    std::cout << run_dependent_tree(std::istream_iterator<dependency>{std::cin}, {}) << '\n';
 }

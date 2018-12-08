@@ -6,7 +6,7 @@
 * Day 05: Alchemical Reduction - 10978, 4840
 * Day 06: Chronal Coordinates - 5365, 42513
 * Day 07: The Sum of Its Parts - ACHOQRXSEKUGMYIWDZLNBFTJVP, 985
-* Day 08: N - F, S
+* Day 08: Memory Maneuver - 36891, 20083
 * Day 09: N - F, S
 * Day 10: N - F, S
 * Day 11: N - F, S
