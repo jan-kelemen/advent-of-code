@@ -4,7 +4,7 @@
 * Day 03: No Matter How You Slice It - 116920, 382
 * Day 04: Repose Record - 71748, 106850
 * Day 05: Alchemical Reduction - 10978, 4840
-* Day 06: N - F, S
+* Day 06: Chronal Coordinates - 5365, 42513
 * Day 07: N - F, S
 * Day 08: N - F, S
 * Day 09: N - F, S
