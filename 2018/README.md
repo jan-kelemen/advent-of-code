@@ -7,7 +7,7 @@
 * Day 06: Chronal Coordinates - 5365, 42513
 * Day 07: The Sum of Its Parts - ACHOQRXSEKUGMYIWDZLNBFTJVP, 985
 * Day 08: Memory Maneuver - 36891, 20083
-* Day 09: N - F, S
+* Day 09: Marble Mania - 388131, 3239376988
 * Day 10: N - F, S
 * Day 11: N - F, S
 * Day 12: N - F, S
