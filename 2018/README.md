@@ -10,7 +10,7 @@
 * Day 09: Marble Mania - 388131, 3239376988
 * Day 10: The Stars Align - HRPHBRKG, 10355
 * Day 11: Chronal Charge - 243,43, 4172
-* Day 12: N - F, S
+* Day 12: Subterranean Sustainability - 2917, 3250000000956
 * Day 13: N - F, S
 * Day 14: N - F, S
 * Day 15: N - F, S
