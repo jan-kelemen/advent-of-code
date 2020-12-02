@@ -1,6 +1,6 @@
 ## Solutions 
-* Day 01:
-* Day 02:
+* Day 01: Report Repair - 514579, 259521570
+* Day 02: Password Philosophy - 454, 649
 * Day 03:
 * Day 04:
 * Day 05:
