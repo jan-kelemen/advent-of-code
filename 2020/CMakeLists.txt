@@ -37,7 +37,7 @@ include(cmake/clang-format.cmake)
 
 add_compile_options(-W -Wall -Wextra -pedantic)
 
-set(days 01;02;03;04;05;06;07;08;09;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25)
+set(days 01;02;03)
 foreach (d IN LISTS days)
     foreach (p RANGE 1 2)
         file(GLOB_RECURSE sources "${CMAKE_CURRENT_LIST_DIR}/d${d}/p0${p}/*.cpp")
