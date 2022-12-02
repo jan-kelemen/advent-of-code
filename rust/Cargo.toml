@@ -1,0 +1,15 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+authors = ["Jan Kelemen"]
+edition = "2021"
+
+[lib]
+name = "aoclib"
+path = "src/lib/lib.rs"
+
+[[bin]]
+name = "aoc"
+path = "src/main.rs"
+
+[dependencies]
