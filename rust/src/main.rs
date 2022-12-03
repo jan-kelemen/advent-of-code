@@ -19,16 +19,17 @@ fn main() {
                 i_was_told_there_would_be_no_math::part2(input_file(n)),
             ),
             3 => (
-                perfectly_spherical_houses_in_a_vacuum::part1(
-                    input_file(n)
-                ),
-                perfectly_spherical_houses_in_a_vacuum::part2(
-                    input_file(n)
-                ),
+                perfectly_spherical_houses_in_a_vacuum::part1(input_file(n)),
+                perfectly_spherical_houses_in_a_vacuum::part2(input_file(n)),
             ),
             4 => (
                 the_ideal_stocking_stuffer::part1(input_file(n)),
-                the_ideal_stocking_stuffer::part2(input_file(n))),
+                the_ideal_stocking_stuffer::part2(input_file(n)),
+            ),
+            5 => (
+                doesnt_he_have_intern_elves_for_this::part1(input_file(n)),
+                doesnt_he_have_intern_elves_for_this::part2(input_file(n)),
+            ),
             e => panic!("Unkown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
