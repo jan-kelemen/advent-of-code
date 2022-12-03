@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::Read;
 
-pub fn final_floor(mut input: File) -> String {
+pub fn part1(mut input: File) -> String {
     let mut instructions = String::new();
     let _size = match input.read_to_string(&mut instructions) {
         Ok(size) => size,
@@ -20,7 +20,7 @@ pub fn final_floor(mut input: File) -> String {
     final_floor.to_string()
 }
 
-pub fn basement_entered(mut input: File) -> String {
+pub fn part2(mut input: File) -> String {
     let mut instructions = String::new();
     let _size = match input.read_to_string(&mut instructions) {
         Ok(size) => size,
