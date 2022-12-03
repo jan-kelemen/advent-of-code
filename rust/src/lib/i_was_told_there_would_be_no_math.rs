@@ -46,7 +46,7 @@ fn ribbon_length(b: Box) -> u32 {
     2 * side_perimiters.iter().min().unwrap() + volume
 }
 
-pub fn needed_wrapping_paper_area(input: File) -> String {
+pub fn part1(input: File) -> String {
     let reader = BufReader::new(input);
 
     let mut total_area = 0;
@@ -60,7 +60,7 @@ pub fn needed_wrapping_paper_area(input: File) -> String {
     total_area.to_string()
 }
 
-pub fn needed_feet_of_ribbon(input: File) -> String {
+pub fn part2(input: File) -> String {
     let reader = BufReader::new(input);
 
     let mut total_ribbon_length = 0;
