@@ -30,6 +30,10 @@ fn main() {
                 doesnt_he_have_intern_elves_for_this::part1(input_file(n)),
                 doesnt_he_have_intern_elves_for_this::part2(input_file(n)),
             ),
+            6 => (
+                probably_a_fire_hazard::part1(input_file(n)),
+                probably_a_fire_hazard::part2(input_file(n)),
+            ),
             e => panic!("Unkown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
