@@ -34,6 +34,10 @@ fn main() {
                 probably_a_fire_hazard::part1(input_file(n)),
                 probably_a_fire_hazard::part2(input_file(n)),
             ),
+            7 => (
+                some_assembly_required::part1(input_file(n)),
+                some_assembly_required::part2(input_file(n)),
+            ),
             e => panic!("Unkown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
