@@ -3,3 +3,5 @@
 * Day 02: Rock Paper Scissors - 10404, 10334
 * Day 03: Rucksack Reorganization - 7737, 2697
 * Day 04: Camp Cleanup - 509, 870
+* Day 05: Supply Stacks - TWSGQHNHL, JNRSCDWPP
+* Day 06: Tuning Trouble - 1965, 2773
