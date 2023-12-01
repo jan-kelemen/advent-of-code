@@ -1,5 +1,5 @@
 ## Solutions 
-* Day 01:
+* Day 01: Trebuchet?! - 56465, 55902
 * Day 02:
 * Day 03:
 * Day 04:
