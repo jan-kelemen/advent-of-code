@@ -42,6 +42,14 @@ fn main() {
                 matchsticks::part1(input_file(n)),
                 matchsticks::part2(input_file(n)),
             ),
+            9 => (
+                all_in_a_single_night::part1(input_file(n)),
+                all_in_a_single_night::part2(input_file(n)),
+            ),
+            10 => (
+                elves_look_elves_say::part1(input_file(n)),
+                elves_look_elves_say::part2(input_file(n)),
+            ),
             e => panic!("Unkown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
