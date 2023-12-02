@@ -38,6 +38,10 @@ fn main() {
                 some_assembly_required::part1(input_file(n)),
                 some_assembly_required::part2(input_file(n)),
             ),
+            8 => (
+                matchsticks::part1(input_file(n)),
+                matchsticks::part2(input_file(n)),
+            ),
             e => panic!("Unkown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
