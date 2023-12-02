@@ -25,3 +25,5 @@ foreach (d IN LISTS days)
     endforeach()
 endforeach()
 
+target_link_libraries(d02p01 PRIVATE foonathan::lexy)
+target_link_libraries(d02p02 PRIVATE foonathan::lexy)
