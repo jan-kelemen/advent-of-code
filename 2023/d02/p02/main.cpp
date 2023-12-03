@@ -50,14 +50,16 @@ namespace grammar
 
             static constexpr auto rule = []
             {
-                auto color = dsl::symbol<colors>(dsl::identifier(dsl::ascii::alpha));
+                auto color =
+                    dsl::symbol<colors>(dsl::identifier(dsl::ascii::alpha));
                 return dsl::integer<std::uint64_t>(dsl::digits<>) + color;
             }();
 
             static constexpr auto value = lexy::construct<count_color>;
         };
 
-        static constexpr auto rule = dsl::list(dsl::p<individual>, dsl::sep(dsl::comma));
+        static constexpr auto rule =
+            dsl::list(dsl::p<individual>, dsl::sep(dsl::comma));
 
         static constexpr auto value = lexy::as_list<std::vector<count_color>> >>
             lexy::callback<cube_set>(
@@ -87,21 +89,24 @@ namespace grammar
     {
         struct individual
         {
-            static constexpr auto rule = dsl::list(dsl::p<set>, dsl::sep(dsl::semicolon));
+            static constexpr auto rule =
+                dsl::list(dsl::p<set>, dsl::sep(dsl::semicolon));
 
             static constexpr auto value = lexy::as_list<std::vector<cube_set>>;
         };
 
         static constexpr auto whitespace = dsl::ascii::space;
 
-        static constexpr auto rule = dsl::integer<std::uint64_t> + dsl::lit_c<':'> + dsl::p<individual>;
+        static constexpr auto rule =
+            dsl::integer<std::uint64_t> + dsl::lit_c<':'> + dsl::p<individual>;
 
         static constexpr auto value = lexy::construct<game_set>;
     };
 
     struct games
     {
-        static constexpr auto rule = dsl::list(LEXY_LIT("Game") >> dsl::p<game>);
+        static constexpr auto rule =
+            dsl::list(LEXY_LIT("Game") >> dsl::p<game>);
 
         static constexpr auto value = lexy::as_list<std::vector<game_set>>;
     };
@@ -111,7 +116,8 @@ int main([[maybe_unused]] int argc, char** argv)
 {
     auto file{lexy::read_file(argv[1])};
 
-    auto games{lexy::parse<grammar::games>(file.buffer(), lexy_ext::report_error)};
+    auto games{
+        lexy::parse<grammar::games>(file.buffer(), lexy_ext::report_error)};
 
     auto const transform = [](game_set const& game)
     {

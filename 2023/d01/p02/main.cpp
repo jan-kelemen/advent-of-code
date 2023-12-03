@@ -9,9 +9,11 @@
 #include <vector>
 
 template<std::ranges::range Range>
-std::vector<std::pair<std::size_t, int>> find_substrs_in(std::string_view value, Range const& substrs)
+std::vector<std::pair<std::size_t, int>> find_substrs_in(std::string_view value,
+    Range const& substrs)
 {
-    auto const substr_match = [&value](std::pair<std::string_view, int> const& word)
+    auto const substr_match = [&value](
+                                  std::pair<std::string_view, int> const& word)
     {
         std::vector<std::pair<std::size_t, int>> positions;
 
@@ -64,8 +66,10 @@ int main([[maybe_unused]] int argc, char** argv)
     std::string line;
     while (getline(input, line))
     {
-        std::vector<std::pair<std::size_t, int>> word_match{find_substrs_in(line, words)};
-        std::vector<std::pair<std::size_t, int>> digit_match{find_substrs_in(line, digits)};
+        std::vector<std::pair<std::size_t, int>> word_match{
+            find_substrs_in(line, words)};
+        std::vector<std::pair<std::size_t, int>> digit_match{
+            find_substrs_in(line, digits)};
         std::vector<std::pair<std::size_t, int>> all_matches;
         std::merge(word_match.cbegin(),
             word_match.cend(),
@@ -73,7 +77,8 @@ int main([[maybe_unused]] int argc, char** argv)
             digit_match.cend(),
             std::back_inserter(all_matches));
 
-        calibration_sum += all_matches.front().second * 10 + all_matches.back().second;
+        calibration_sum +=
+            all_matches.front().second * 10 + all_matches.back().second;
     }
     std::cout << calibration_sum << '\n';
 }

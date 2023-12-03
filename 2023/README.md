@@ -1,7 +1,7 @@
 ## Solutions 
 * Day 01: Trebuchet?! - 56465, 55902
 * Day 02: Cube Conundrum - 2439, 63711
-* Day 03:
+* Day 03: Gear Ratios - 546563, 91031374
 * Day 04:
 * Day 05:
 * Day 06:
