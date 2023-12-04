@@ -27,3 +27,5 @@ endforeach()
 
 target_link_libraries(d02p01 PRIVATE foonathan::lexy)
 target_link_libraries(d02p02 PRIVATE foonathan::lexy)
+target_link_libraries(d04p01 PRIVATE foonathan::lexy)
+target_link_libraries(d04p02 PRIVATE foonathan::lexy)
