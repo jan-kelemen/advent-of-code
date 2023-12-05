@@ -1,9 +1,11 @@
 #include <algorithm>
 #include <cstdint>
 #include <iostream>
+#include <lexy/callback/container.hpp>
 #include <limits>
 #include <numeric>
 #include <ranges>
+#include <set>
 #include <vector>
 
 #include <lexy/action/parse.hpp>
@@ -21,16 +23,24 @@ namespace ast
         int64_t length;
     };
 
+    struct map_range_cmp
+    {
+        bool operator()(map_range const& lhs, map_range const& rhs) const
+        {
+            return lhs.source_range_start < rhs.source_range_start;
+        }
+    };
+
     struct almanac
     {
         std::vector<int64_t> seeds;
-        std::vector<map_range> seed_to_soil;
-        std::vector<map_range> soil_to_fertilizer;
-        std::vector<map_range> fertilizer_to_water;
-        std::vector<map_range> water_to_light;
-        std::vector<map_range> light_to_temperature;
-        std::vector<map_range> temperature_to_humidity;
-        std::vector<map_range> humidity_to_location;
+        std::set<map_range, map_range_cmp> seed_to_soil;
+        std::set<map_range, map_range_cmp> soil_to_fertilizer;
+        std::set<map_range, map_range_cmp> fertilizer_to_water;
+        std::set<map_range, map_range_cmp> water_to_light;
+        std::set<map_range, map_range_cmp> light_to_temperature;
+        std::set<map_range, map_range_cmp> temperature_to_humidity;
+        std::set<map_range, map_range_cmp> humidity_to_location;
     };
 } // namespace ast
 
@@ -52,7 +62,7 @@ namespace grammar
             dsl::list(dsl::peek(dsl::digits<>) >> dsl::p<map_range>);
 
         static constexpr auto value =
-            lexy::as_list<std::vector<ast::map_range>>;
+            lexy::as_collection<std::set<ast::map_range, ast::map_range_cmp>>;
     };
 
     struct number_list
@@ -82,7 +92,8 @@ namespace grammar
     };
 } // namespace grammar
 
-int64_t map_to_destination(std::vector<ast::map_range> const& map,
+std::pair<int64_t, size_t> map_to_destination(
+    std::set<ast::map_range, ast::map_range_cmp> const& map,
     int64_t value)
 {
     auto const is_in_mapped_range{[&value](ast::map_range const& r)
@@ -94,21 +105,45 @@ int64_t map_to_destination(std::vector<ast::map_range> const& map,
 
     if (it == map.cend())
     {
-        return value;
+        auto bound = std::lower_bound(map.cbegin(),
+            map.cend(),
+            value,
+            [](ast::map_range const& r, int64_t value)
+            {
+                return value >= r.source_range_start &&
+                    value < r.source_range_start + r.length;
+            });
+        if (bound == map.cend())
+        {
+            return {value, std::numeric_limits<int64_t>::max() - value};
+        }
+
+        return {value, bound->source_range_start - value};
     }
 
-    return (value - it->source_range_start) + it->destination_range_start;
+    return {(value - it->source_range_start) + it->destination_range_start,
+        it->length - (value - it->source_range_start)};
 }
 
-int64_t map_from_almanac(ast::almanac const& almanac, int64_t value)
+std::pair<int64_t, int64_t> map_from_almanac(ast::almanac const& almanac,
+    int64_t value)
 {
-    value = map_to_destination(almanac.seed_to_soil, value);
-    value = map_to_destination(almanac.soil_to_fertilizer, value);
-    value = map_to_destination(almanac.fertilizer_to_water, value);
-    value = map_to_destination(almanac.water_to_light, value);
-    value = map_to_destination(almanac.light_to_temperature, value);
-    value = map_to_destination(almanac.temperature_to_humidity, value);
-    return map_to_destination(almanac.humidity_to_location, value);
+    auto tmp = map_to_destination(almanac.seed_to_soil, value);
+    auto safe_skip = tmp.second;
+    tmp = map_to_destination(almanac.soil_to_fertilizer, tmp.first);
+    safe_skip = std::min(safe_skip, tmp.second);
+    tmp = map_to_destination(almanac.fertilizer_to_water, tmp.first);
+    safe_skip = std::min(safe_skip, tmp.second);
+    tmp = map_to_destination(almanac.water_to_light, tmp.first);
+    safe_skip = std::min(safe_skip, tmp.second);
+    tmp = map_to_destination(almanac.light_to_temperature, tmp.first);
+    safe_skip = std::min(safe_skip, tmp.second);
+    tmp = map_to_destination(almanac.temperature_to_humidity, tmp.first);
+    safe_skip = std::min(safe_skip, tmp.second);
+    tmp = map_to_destination(almanac.humidity_to_location, tmp.first);
+    safe_skip = std::min(safe_skip, tmp.second);
+
+    return {tmp.first, safe_skip};
 }
 
 int main([[maybe_unused]] int argc, char** argv)
@@ -127,19 +162,14 @@ int main([[maybe_unused]] int argc, char** argv)
                      [](auto lhs, auto rhs) { return std::min(lhs, rhs); },
                      [&almanac](std::ranges::viewable_range auto&& chunk_range)
                      {
-                         auto const transform_seed = [&almanac](auto&& s)
-                         { return map_from_almanac(almanac.value(), s); };
-
-                         auto const seed_view{std::views::iota(chunk_range[0]) |
-                             std::views::take(chunk_range[1]) |
-                             std::views::transform(transform_seed)};
-
                          int64_t rv{std::numeric_limits<int64_t>::max()};
-                         for (auto&& i : seed_view)
+                         for (int64_t i{chunk_range[0]};
+                              i <= chunk_range[0] + chunk_range[1];)
                          {
-                             rv = std::min(rv, i);
+                             auto current{map_from_almanac(almanac.value(), i)};
+                             rv = std::min(current.first, rv);
+                             i += current.second;
                          }
-
                          return rv;
                      })
               << '\n';
