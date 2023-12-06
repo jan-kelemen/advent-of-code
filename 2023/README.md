@@ -4,7 +4,7 @@
 * Day 03: Gear Ratios - 546563, 91031374
 * Day 04: Scratchcards - 15205, 6189740
 * Day 05: If You Give A Seed A Fertilizer - 226172555, 47909639
-* Day 06:
+* Day 06: Wait for it - 4568778, 28973936
 * Day 07:
 * Day 08:
 * Day 09:
