@@ -5,22 +5,3 @@
 * Day 04: Scratchcards - 15205, 6189740
 * Day 05: If You Give A Seed A Fertilizer - 226172555, 47909639
 * Day 06: Wait for it - 4568778, 28973936
-* Day 07:
-* Day 08:
-* Day 09:
-* Day 10:
-* Day 11:
-* Day 12:
-* Day 13:
-* Day 14:
-* Day 15:
-* Day 16:
-* Day 17:
-* Day 18:
-* Day 19:
-* Day 20:
-* Day 21:
-* Day 22:
-* Day 23:
-* Day 24:
-* Day 25:
