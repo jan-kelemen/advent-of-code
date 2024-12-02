@@ -1,4 +1,4 @@
-set(days 01)
+set(days 01 02)
 foreach (d IN LISTS days)
     foreach (p RANGE 1 2)
         add_subdirectory(d${d}p0${p})
