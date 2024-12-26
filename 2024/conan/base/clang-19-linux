@@ -1,0 +1,10 @@
+[settings]
+os=Linux
+compiler=clang
+compiler.cppstd=23
+compiler.version=19
+
+[buildenv]
+CC=clang-19
+CXX=clang++-19
+

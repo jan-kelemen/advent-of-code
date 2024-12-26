@@ -1,0 +1,8 @@
+set(days 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25)
+foreach (d IN LISTS days)
+    foreach (p RANGE 1 2)
+        if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/d${d}p0${p}")
+            add_subdirectory(d${d}p0${p})
+        endif()
+    endforeach()
+endforeach()
