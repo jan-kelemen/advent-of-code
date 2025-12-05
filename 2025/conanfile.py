@@ -23,6 +23,7 @@ class CSTConan(ConanFile):
     implements = ["auto_shared_fpic"]
 
     def requirements(self):
+        self.requires("boost/1.89.0")
         self.requires("fmt/12.0.0")
 
     def build_requirements(self):

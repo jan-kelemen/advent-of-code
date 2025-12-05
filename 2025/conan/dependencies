@@ -1,0 +1,2 @@
+[options]
+boost*:header_only=True

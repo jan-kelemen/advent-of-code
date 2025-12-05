@@ -12,6 +12,7 @@ option(CST_ENABLE_COMPILER_STATIC_ANALYSIS "Enable static analysis provided by c
 option(CST_ENABLE_CPPCHECK "Enable cppcheck in build" OFF)
 option(CST_ENABLE_IWYU "Enable include-what-you-use in build" OFF)
 
+find_package(Boost REQUIRED)
 find_package(fmt REQUIRED)
 
 if (CMAKE_POSITION_INDEPENDENT_CODE)
