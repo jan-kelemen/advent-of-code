@@ -47,5 +47,6 @@ int main([[maybe_unused]] int const argc, char const* argv[])
         }
     }
 
-    fmt::println("Fresh ingredients: {}", fresh);
+    fmt::println("Part 1: {}", fresh);
+    fmt::println("Part 2: {}", set.size());
 }

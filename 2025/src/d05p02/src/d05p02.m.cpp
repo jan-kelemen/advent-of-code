@@ -1,4 +1,4 @@
-#include <boost/icl/interval_set.hpp>
+#include <boost/icl/split_interval_map.hpp>
 
 #include <fmt/format.h>
 
@@ -17,7 +17,7 @@ int main([[maybe_unused]] int const argc, char const* argv[])
 
     std::regex const range_regex{R"((\d+)-(\d+))"};
 
-    boost::icl::interval_set<uint64_t> set;
+    boost::icl::split_interval_map<uint64_t, uint64_t> overlaps;
 
     std::string line;
     while (std::getline(input, line))
@@ -32,10 +32,18 @@ int main([[maybe_unused]] int const argc, char const* argv[])
 
         uint64_t const begin_id{std::stoull(match[1].str())};
         uint64_t const end_id{std::stoull(match[2].str())};
-        fmt::println("{} {}", begin_id, end_id);
 
-        set.insert(boost::icl::interval<uint64_t>::closed(begin_id, end_id));
+        overlaps += std::make_pair(
+            boost::icl::interval<uint64_t>::closed(begin_id, end_id),
+            uint64_t{1});
     }
 
-    fmt::println("Fresh ingredients: {}", set.size());
+    uint64_t super_fresh{};
+    for (auto const& [range, count] : overlaps)
+    {
+        if (count > 1)
+            super_fresh += range.upper() - range.lower() + 1;
+    }
+
+    fmt::println("Super fresh: {}", super_fresh);
 }
