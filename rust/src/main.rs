@@ -58,6 +58,10 @@ fn main() {
                 jsabacusframework_io::part1(input_file(n)),
                 jsabacusframework_io::part2(input_file(n)),
             ),
+            13 => (
+                knights_of_the_dinner_table::part1(input_file(n)),
+                knights_of_the_dinner_table::part2(input_file(n)),
+            ),
             e => panic!("Unknown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),

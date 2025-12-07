@@ -4,6 +4,7 @@ pub mod doesnt_he_have_intern_elves_for_this;
 pub mod elves_look_elves_say;
 pub mod i_was_told_there_would_be_no_math;
 pub mod jsabacusframework_io;
+pub mod knights_of_the_dinner_table;
 pub mod matchsticks;
 pub mod not_quite_lisp;
 pub mod perfectly_spherical_houses_in_a_vacuum;
