@@ -4,8 +4,7 @@ use std::io::{BufRead, BufReader};
 use std::sync::LazyLock;
 
 fn old_rules(string: &String) -> bool {
-    static BAD_SUBSTR: LazyLock<Regex> =
-        LazyLock::new(|| Regex::new("ab|cd|pq|xy").unwrap());
+    static BAD_SUBSTR: LazyLock<Regex> = LazyLock::new(|| Regex::new("ab|cd|pq|xy").unwrap());
     static CONSECUTIVE_LETTERS: LazyLock<Regex> =
         LazyLock::new(|| Regex::new(r"([[:alpha:]])\1").unwrap());
 

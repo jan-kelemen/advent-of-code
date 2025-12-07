@@ -18,7 +18,7 @@ fn construct_graph(input: File) -> HashMap<String, HashMap<String, u64>> {
     reader.lines().for_each(|l| {
         let line = l.unwrap();
         let captures = (*PARSE).captures(&line).unwrap();
-        
+
         let from = captures[1].to_string();
         let to = captures[2].to_string();
         let weight = u64::from_str(&captures[3]).unwrap();

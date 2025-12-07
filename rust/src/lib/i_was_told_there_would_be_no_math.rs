@@ -16,8 +16,7 @@ impl FromStr for Box {
 
     // instance of 'RGB'
     fn from_str(dimensions: &str) -> Result<Self, Self::Err> {
-        static RE: LazyLock<Regex> =
-            LazyLock::new(|| Regex::new(r"(\d+)x(\d+)x(\d+)").unwrap());
+        static RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"(\d+)x(\d+)x(\d+)").unwrap());
 
         let captures = (*RE).captures(dimensions).unwrap();
         let length = u32::from_str(&captures[1]).unwrap();

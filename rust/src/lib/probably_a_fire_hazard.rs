@@ -79,8 +79,9 @@ impl Rules for NewRules {
     }
 }
 fn process_instruction(grid: &mut Grid, instruction: &str, rules: &impl Rules) {
-    static PARSE: LazyLock<Regex> =
-        LazyLock::new(|| Regex::new(r"(turn on|turn off|toggle)+ (\d+),(\d+) through (\d+),(\d+)").unwrap());
+    static PARSE: LazyLock<Regex> = LazyLock::new(|| {
+        Regex::new(r"(turn on|turn off|toggle)+ (\d+),(\d+) through (\d+),(\d+)").unwrap()
+    });
 
     let captures = (*PARSE).captures(instruction).unwrap();
 

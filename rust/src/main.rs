@@ -50,6 +50,10 @@ fn main() {
                 elves_look_elves_say::part1(input_file(n)),
                 elves_look_elves_say::part2(input_file(n)),
             ),
+            11 => (
+                corporate_policy::part1(input_file(n)),
+                corporate_policy::part2(input_file(n)),
+            ),
             e => panic!("Unkown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),

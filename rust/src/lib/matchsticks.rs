@@ -21,7 +21,7 @@ where
     let parse_u8 = map_res(parse_delimited_hex, move |hex| u8::from_str_radix(hex, 16));
 
     map_opt(parse_u8, |_| Some('.')).parse(input) // The input contains sequences which don't map
-                                                  // to ascii
+    // to ascii
 }
 
 fn parse_escaped_char<'a, E>(input: &'a str) -> IResult<&'a str, char, E>

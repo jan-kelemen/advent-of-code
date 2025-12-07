@@ -41,8 +41,9 @@ enum Gate {
 }
 
 fn to_gate(input: &str) -> Gate {
-    static RE: LazyLock<Regex> =
-        LazyLock::new(|| Regex::new(r"((NOT )?((\d+)|([[:alpha:]]+)) -> ([[:alpha:]]+))|(((\d+)|([[:alpha:]]+)) (AND|OR|LSHIFT|RSHIFT) ((\d+)|([[:alpha:]]+)) -> ([[:alpha:]]+))").unwrap());
+    static RE: LazyLock<Regex> = LazyLock::new(|| {
+        Regex::new(r"((NOT )?((\d+)|([[:alpha:]]+)) -> ([[:alpha:]]+))|(((\d+)|([[:alpha:]]+)) (AND|OR|LSHIFT|RSHIFT) ((\d+)|([[:alpha:]]+)) -> ([[:alpha:]]+))").unwrap()
+    });
 
     let captures = (*RE).captures(input).unwrap();
     if let Some(_) = captures.get(1) {
