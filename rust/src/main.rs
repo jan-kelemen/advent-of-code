@@ -54,7 +54,11 @@ fn main() {
                 corporate_policy::part1(input_file(n)),
                 corporate_policy::part2(input_file(n)),
             ),
-            e => panic!("Unkown day: {}", e),
+            12 => (
+                jsabacusframework_io::part1(input_file(n)),
+                jsabacusframework_io::part2(input_file(n)),
+            ),
+            e => panic!("Unknown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
     };
