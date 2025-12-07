@@ -66,6 +66,10 @@ fn main() {
                 raindeer_olympics::part1(input_file(n)),
                 raindeer_olympics::part2(input_file(n)),
             ),
+            15 => (
+                science_for_hungry_people::part1(input_file(n)),
+                science_for_hungry_people::part2(input_file(n)),
+            ),
             e => panic!("Unknown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
