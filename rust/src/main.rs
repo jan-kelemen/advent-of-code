@@ -70,6 +70,10 @@ fn main() {
                 science_for_hungry_people::part1(input_file(n)),
                 science_for_hungry_people::part2(input_file(n)),
             ),
+            16 => (
+                aunt_sue::part1(input_file(n)),
+                aunt_sue::part2(input_file(n)),
+            ),
             e => panic!("Unknown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
