@@ -62,6 +62,10 @@ fn main() {
                 knights_of_the_dinner_table::part1(input_file(n)),
                 knights_of_the_dinner_table::part2(input_file(n)),
             ),
+            14 => (
+                raindeer_olympics::part1(input_file(n)),
+                raindeer_olympics::part2(input_file(n)),
+            ),
             e => panic!("Unknown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),

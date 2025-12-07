@@ -9,5 +9,6 @@ pub mod matchsticks;
 pub mod not_quite_lisp;
 pub mod perfectly_spherical_houses_in_a_vacuum;
 pub mod probably_a_fire_hazard;
+pub mod raindeer_olympics;
 pub mod some_assembly_required;
 pub mod the_ideal_stocking_stuffer;
