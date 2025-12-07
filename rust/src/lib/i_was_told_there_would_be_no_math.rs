@@ -1,8 +1,8 @@
-use lazy_static::lazy_static;
 use regex::Regex;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::str::FromStr;
+use std::sync::LazyLock;
 
 #[derive(Debug)]
 struct Box {
@@ -16,11 +16,10 @@ impl FromStr for Box {
 
     // instance of 'RGB'
     fn from_str(dimensions: &str) -> Result<Self, Self::Err> {
-        lazy_static! {
-            static ref RE: Regex = Regex::new(r"(\d+)x(\d+)x(\d+)").unwrap();
-        }
+        static RE: LazyLock<Regex> =
+            LazyLock::new(|| Regex::new(r"(\d+)x(\d+)x(\d+)").unwrap());
 
-        let captures = RE.captures(dimensions).unwrap();
+        let captures = (*RE).captures(dimensions).unwrap();
         let length = u32::from_str(&captures[1]).unwrap();
         let width = u32::from_str(&captures[2]).unwrap();
         let height = u32::from_str(&captures[3]).unwrap();

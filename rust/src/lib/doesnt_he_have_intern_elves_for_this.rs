@@ -1,30 +1,29 @@
 use fancy_regex::Regex;
-use lazy_static::lazy_static;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::sync::LazyLock;
 
 fn old_rules(string: &String) -> bool {
-    lazy_static! {
-        static ref BAD_SUBSTR: Regex = Regex::new("ab|cd|pq|xy").unwrap();
-        static ref CONSECUTIVE_LETTERS: Regex = Regex::new(r"([[:alpha:]])\1").unwrap();
-    }
+    static BAD_SUBSTR: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new("ab|cd|pq|xy").unwrap());
+    static CONSECUTIVE_LETTERS: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"([[:alpha:]])\1").unwrap());
 
     let atleast_three_vowels = string.matches(&['a', 'e', 'i', 'o', 'u']).count() >= 3;
-    let consecutive_letters = CONSECUTIVE_LETTERS.is_match(string).unwrap();
-    let no_bad_substrs = !BAD_SUBSTR.is_match(string).unwrap();
+    let consecutive_letters = (*CONSECUTIVE_LETTERS).is_match(string).unwrap();
+    let no_bad_substrs = !(*BAD_SUBSTR).is_match(string).unwrap();
 
     atleast_three_vowels && consecutive_letters && no_bad_substrs
 }
 
 fn new_rules(string: &String) -> bool {
-    lazy_static! {
-        static ref PAIR_WITHOUT_OVERLAP: Regex =
-            Regex::new(r"([[:alpha:]]{2})[[:alpha:]]*\1").unwrap();
-        static ref REPEATED: Regex = Regex::new(r"([[:alpha:]])[[:alpha:]]\1").unwrap();
-    }
+    static PAIR_WITHOUT_OVERLAP: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"([[:alpha:]]{2})[[:alpha:]]*\1").unwrap());
+    static REPEATED: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"([[:alpha:]])[[:alpha:]]\1").unwrap());
 
-    let pair_without_overlap = PAIR_WITHOUT_OVERLAP.is_match(string).unwrap();
-    let repeated_letter = REPEATED.is_match(string).unwrap();
+    let pair_without_overlap = (*PAIR_WITHOUT_OVERLAP).is_match(string).unwrap();
+    let repeated_letter = (*REPEATED).is_match(string).unwrap();
 
     pair_without_overlap && repeated_letter
 }

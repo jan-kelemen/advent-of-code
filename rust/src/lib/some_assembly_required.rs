@@ -1,9 +1,9 @@
-use lazy_static::lazy_static;
 use regex::Regex;
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::str::FromStr;
+use std::sync::LazyLock;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 enum Input {
@@ -41,11 +41,10 @@ enum Gate {
 }
 
 fn to_gate(input: &str) -> Gate {
-    lazy_static! {
-        static ref RE : Regex = Regex::new(r"((NOT )?((\d+)|([[:alpha:]]+)) -> ([[:alpha:]]+))|(((\d+)|([[:alpha:]]+)) (AND|OR|LSHIFT|RSHIFT) ((\d+)|([[:alpha:]]+)) -> ([[:alpha:]]+))").unwrap();
-    }
+    static RE: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"((NOT )?((\d+)|([[:alpha:]]+)) -> ([[:alpha:]]+))|(((\d+)|([[:alpha:]]+)) (AND|OR|LSHIFT|RSHIFT) ((\d+)|([[:alpha:]]+)) -> ([[:alpha:]]+))").unwrap());
 
-    let captures = RE.captures(input).unwrap();
+    let captures = (*RE).captures(input).unwrap();
     if let Some(_) = captures.get(1) {
         let negated = captures.get(2).is_some();
 

@@ -1,11 +1,11 @@
-use lazy_static::lazy_static;
 use regex::Regex;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::str::FromStr;
+use std::sync::LazyLock;
 
 struct Grid {
-    lights: [[u32; 1000]; 1000],
+    lights: Vec<Vec<u32>>,
 }
 
 struct Point {
@@ -16,7 +16,7 @@ struct Point {
 impl Grid {
     fn new() -> Grid {
         Grid {
-            lights: [[0; 1000]; 1000],
+            lights: vec![vec![0; 1000]; 1000],
         }
     }
 
@@ -79,12 +79,10 @@ impl Rules for NewRules {
     }
 }
 fn process_instruction(grid: &mut Grid, instruction: &str, rules: &impl Rules) {
-    lazy_static! {
-        static ref PARSE: Regex =
-            Regex::new(r"(turn on|turn off|toggle)+ (\d+),(\d+) through (\d+),(\d+)").unwrap();
-    }
+    static PARSE: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"(turn on|turn off|toggle)+ (\d+),(\d+) through (\d+),(\d+)").unwrap());
 
-    let captures = PARSE.captures(instruction).unwrap();
+    let captures = (*PARSE).captures(instruction).unwrap();
 
     let lower_left = Point {
         x: usize::from_str(&captures[2]).unwrap(),

@@ -2,15 +2,14 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::str::FromStr;
+use std::sync::LazyLock;
 
 use itertools::Itertools;
-use lazy_static::lazy_static;
 use regex::Regex;
 
 fn construct_graph(input: File) -> HashMap<String, HashMap<String, u64>> {
-    lazy_static! {
-        static ref PARSE: Regex = Regex::new(r"([[:alpha:]]+) to ([[:alpha:]]+) = (\d+)").unwrap();
-    }
+    static PARSE: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"([[:alpha:]]+) to ([[:alpha:]]+) = (\d+)").unwrap());
 
     let mut nodes = HashMap::<String, HashMap<String, u64>>::new();
 
@@ -18,8 +17,8 @@ fn construct_graph(input: File) -> HashMap<String, HashMap<String, u64>> {
 
     reader.lines().for_each(|l| {
         let line = l.unwrap();
-        let captures = PARSE.captures(&line).unwrap();
-
+        let captures = (*PARSE).captures(&line).unwrap();
+        
         let from = captures[1].to_string();
         let to = captures[2].to_string();
         let weight = u64::from_str(&captures[3]).unwrap();
@@ -55,11 +54,11 @@ fn all_paths(graph: HashMap<String, HashMap<String, u64>>) -> Vec<u64> {
 pub fn part1(input: File) -> String {
     let graph = construct_graph(input);
 
-    all_paths(graph).iter().min().unwrap().to_string()
+    all_paths(graph).into_iter().min().unwrap().to_string()
 }
 
 pub fn part2(input: File) -> String {
     let graph = construct_graph(input);
 
-    all_paths(graph).iter().max().unwrap().to_string()
+    all_paths(graph).into_iter().max().unwrap().to_string()
 }
