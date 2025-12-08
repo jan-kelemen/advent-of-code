@@ -6,4 +6,5 @@
 * Day 05: Cafeteria - 885, 348115621205535
 * Day 06: Trash Compactor - 6209956042374, 12608160008022
 * Day 07: Laboratories - 1658, 53916299384254
+* Day 08: Playground - 54600, 107256172
 
