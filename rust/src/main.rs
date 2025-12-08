@@ -78,6 +78,10 @@ fn main() {
                 no_such_thing_as_too_much::part1(input_file(n)),
                 no_such_thing_as_too_much::part2(input_file(n)),
             ),
+            18 => (
+                like_a_gif_for_your_yard::part1(input_file(n)),
+                like_a_gif_for_your_yard::part2(input_file(n)),
+            ),
             e => panic!("Unknown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
