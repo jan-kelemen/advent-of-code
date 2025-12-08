@@ -74,6 +74,10 @@ fn main() {
                 aunt_sue::part1(input_file(n)),
                 aunt_sue::part2(input_file(n)),
             ),
+            17 => (
+                no_such_thing_as_too_much::part1(input_file(n)),
+                no_such_thing_as_too_much::part2(input_file(n)),
+            ),
             e => panic!("Unknown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),
