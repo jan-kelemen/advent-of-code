@@ -68,14 +68,13 @@ int main([[maybe_unused]] int const argc, char const* argv[])
 
     static std::regex const dimensions_regex{R"((\d+),(\d+),(\d+))"};
 
-    std::vector<std::pair<std::tuple<int, int, int>, std::vector<double>>>
-        positions;
+    std::vector<std::pair<std::tuple<int, int, int>, std::monostate>> positions;
 
     std::string line;
     while (std::getline(input, line))
     {
         std::smatch match;
-        bool const matched{std::regex_match(line.cbegin(),
+        [[maybe_unused]] bool const matched{std::regex_match(line.cbegin(),
             line.cend(),
             match,
             dimensions_regex)};
@@ -84,18 +83,15 @@ int main([[maybe_unused]] int const argc, char const* argv[])
         positions.emplace_back(std::make_tuple(std::stoi(match[1]),
                                    std::stoi(match[2]),
                                    std::stoi(match[3])),
-            std::vector<double>{});
+            std::monostate{});
     }
 
-    for (size_t i{}; i != positions.size(); ++i)
+    std::vector<std::pair<double, std::pair<size_t, size_t>>> pairs_by_distance;
+
+    for (size_t i{}; i != positions.size() - 1; ++i)
     {
-        positions[i].second.resize(positions.size());
-        for (size_t j{}; j != positions.size(); ++j)
+        for (size_t j{i + 1}; j != positions.size(); ++j)
         {
-            if (i == j)
-            {
-                continue;
-            }
             auto const& x{positions[i].first};
             auto const& y{positions[j].first};
 
@@ -103,32 +99,22 @@ int main([[maybe_unused]] int const argc, char const* argv[])
                 std::get<1>(x) - std::get<1>(y),
                 std::get<2>(x) - std::get<2>(y))};
 
-            positions[i].second[j] = distance;
+            pairs_by_distance.emplace_back(distance, std::make_pair(i, j));
         }
     }
+    std::ranges::make_heap(pairs_by_distance,
+        std::greater{},
+        [](auto const& p) { return p.first; });
 
     std::vector<std::set<size_t>> circuits;
 
-    for (int const connection : std::views::iota(0, 1000))
+    for ([[maybe_unused]] int const connection : std::views::iota(0, 1000))
     {
-        double min_distance{std::numeric_limits<double>::max()};
-        std::pair<size_t, size_t> accepted;
-
-        for (size_t i{}; i != positions.size(); ++i)
-        {
-            for (size_t j{}; j != positions.size(); ++j)
-            {
-                if (auto const current_distance{positions[i].second[j]};
-                    current_distance != 0.0 && current_distance < min_distance)
-                {
-                    min_distance = current_distance;
-                    accepted = std::make_pair(i, j);
-                }
-            }
-        }
-
-        positions[accepted.first].second[accepted.second] = 0;
-        positions[accepted.second].second[accepted.first] = 0;
+        std::ranges::pop_heap(pairs_by_distance,
+            std::greater{},
+            [](auto const& p) { return p.first; });
+        std::pair<size_t, size_t> accepted{pairs_by_distance.back().second};
+        pairs_by_distance.pop_back();
 
         std::optional<size_t> circuit_of_first_point;
         std::optional<size_t> circuit_of_second_point;
