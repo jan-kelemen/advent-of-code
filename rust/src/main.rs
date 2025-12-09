@@ -82,6 +82,10 @@ fn main() {
                 like_a_gif_for_your_yard::part1(input_file(n)),
                 like_a_gif_for_your_yard::part2(input_file(n)),
             ),
+            19 => (
+                medicine_for_rudolph::part1(input_file(n)),
+                medicine_for_rudolph::part2(input_file(n)),
+            ),
             e => panic!("Unknown day: {}", e),
         },
         Err(e) => panic!("Unknown day: {}", e),

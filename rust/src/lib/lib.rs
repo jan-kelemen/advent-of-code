@@ -8,6 +8,7 @@ pub mod jsabacusframework_io;
 pub mod knights_of_the_dinner_table;
 pub mod like_a_gif_for_your_yard;
 pub mod matchsticks;
+pub mod medicine_for_rudolph;
 pub mod no_such_thing_as_too_much;
 pub mod not_quite_lisp;
 pub mod perfectly_spherical_houses_in_a_vacuum;
