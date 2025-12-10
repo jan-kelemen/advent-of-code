@@ -8,3 +8,4 @@
 * Day 07: Laboratories - 1658, 53916299384254
 * Day 08: Playground - 54600, 107256172
 * Day 09: Movie Theater - 4767418746, 1461987144
+* Day 10: Factory - 522,
