@@ -9,3 +9,4 @@
 * Day 08: Playground - 54600, 107256172
 * Day 09: Movie Theater - 4767418746, 1461987144
 * Day 10: Factory - 522,
+* Day 11: Reactor - 758, 490695961032000
