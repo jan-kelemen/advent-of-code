@@ -1,0 +1,8 @@
+include(../../conan/clang-{{ os.getenv("CLANG_VER") }}-libstdcxx-amd64-linux)
+include(../../conan/opt/gnulike-address-sanitizer)
+include(../../conan/opt/gnulike-leak-sanitizer)
+include(../../conan/opt/gnulike-undefined-sanitizer)
+include(../../conan/opt/gnulike-arch-amd64-v3)
+
+[settings]
+build_type=RelWithDebInfo

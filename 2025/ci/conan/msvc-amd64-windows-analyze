@@ -1,0 +1,4 @@
+include(../../conan/msvc-2022-amd64-windows)
+
+[settings]
+build_type=Debug

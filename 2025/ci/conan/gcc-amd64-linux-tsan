@@ -1,0 +1,6 @@
+include(../../conan/gcc-{{ os.getenv("GCC_VER") }}-amd64-linux)
+include(../../conan/opt/gnulike-thread-sanitizer)
+include(../../conan/opt/gnulike-arch-amd64-v3)
+
+[settings]
+build_type=RelWithDebInfo
